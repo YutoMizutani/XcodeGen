@@ -222,6 +222,7 @@ public class SchemeGenerator {
             macroExpansion: shouldExecuteOnLaunch ? nil : buildableReference,
             selectedDebuggerIdentifier: (scheme.run?.debugEnabled ?? Scheme.Run.debugEnabledDefault) ? XCScheme.defaultDebugger : "",
             selectedLauncherIdentifier: (scheme.run?.debugEnabled ?? Scheme.Run.debugEnabledDefault) ? XCScheme.defaultLauncher : "Xcode.IDEFoundation.Launcher.PosixSpawn",
+            askForAppToLaunch: scheme.run?.askForAppToLaunch ?? Scheme.Run.askForAppToLaunchDefault,
             disableMainThreadChecker: scheme.run?.disableMainThreadChecker ?? Scheme.Run.disableMainThreadCheckerDefault,
             commandlineArguments: launchCommandLineArgs,
             environmentVariables: launchVariables,
@@ -285,6 +286,7 @@ extension Scheme {
             build: .init(targets: [Scheme.BuildTarget(target: TargetReference.local(target.name))]),
             run: .init(
                 config: debugConfig,
+                askForAppToLaunch: targetScheme.askForAppToLaunch,
                 commandLineArguments: targetScheme.commandLineArguments,
                 preActions: targetScheme.preActions,
                 postActions: targetScheme.postActions,

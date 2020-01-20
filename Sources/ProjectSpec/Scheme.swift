@@ -68,10 +68,12 @@ public struct Scheme: Equatable {
     }
 
     public struct Run: BuildAction {
+        public static let askForAppToLaunchDefault = false
         public static let disableMainThreadCheckerDefault = false
         public static let debugEnabledDefault = true
 
         public var config: String?
+        public var askForAppToLaunch: Bool
         public var commandLineArguments: [String: Bool]
         public var preActions: [ExecutionAction]
         public var postActions: [ExecutionAction]
@@ -83,6 +85,7 @@ public struct Scheme: Equatable {
 
         public init(
             config: String,
+            askForAppToLaunch: Bool = askForAppToLaunchDefault,
             commandLineArguments: [String: Bool] = [:],
             preActions: [ExecutionAction] = [],
             postActions: [ExecutionAction] = [],
@@ -93,6 +96,7 @@ public struct Scheme: Equatable {
             debugEnabled: Bool = debugEnabledDefault
         ) {
             self.config = config
+            self.askForAppToLaunch = askForAppToLaunch
             self.commandLineArguments = commandLineArguments
             self.preActions = preActions
             self.postActions = postActions
@@ -284,6 +288,7 @@ extension Scheme.Run: JSONObjectConvertible {
 
     public init(jsonDictionary: JSONDictionary) throws {
         config = jsonDictionary.json(atKeyPath: "config")
+        askForAppToLaunch = jsonDictionary.json(atKeyPath: "askForAppToLaunch") ?? Scheme.Run.askForAppToLaunchDefault
         commandLineArguments = jsonDictionary.json(atKeyPath: "commandLineArguments") ?? [:]
         preActions = jsonDictionary.json(atKeyPath: "preActions") ?? []
         postActions = jsonDictionary.json(atKeyPath: "postActions") ?? []
@@ -306,6 +311,10 @@ extension Scheme.Run: JSONEncodable {
             "language": language,
             "region": region,
         ]
+
+        if askForAppToLaunch != Scheme.Run.askForAppToLaunchDefault {
+            dict["askForAppToLaunch"] = askForAppToLaunch
+        }
 
         if disableMainThreadChecker != Scheme.Run.disableMainThreadCheckerDefault {
             dict["disableMainThreadChecker"] = disableMainThreadChecker

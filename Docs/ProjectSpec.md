@@ -584,6 +584,7 @@ targets:
 This is a convenience used to automatically generate schemes for a target based on different configs or included tests. If you want more control check out the top level [Scheme](#scheme).
 
 - [x] **configVariants**: **[String]** - This generates a scheme for each entry, using configs that contain the name with debug and release variants. This is useful for having different environment schemes.
+- [ ] **askForAppToLaunch**: **Bool** - a boolean that indicates if this scheme should disable disable the Ask on Launch. This defaults to false
 - [ ] **testTargets**: **[[Test Target](#test-target)]** - a list of test targets that should be included in the scheme. These will be added to the build targets and the test entries. Each entry can either be a simple string, or a [Test Target](#test-target)
 - [ ] **gatherCoverageData**: **Bool** - a boolean that indicates if this scheme should gather coverage data. This defaults to false
 - [ ] **disableMainThreadChecker**: **Bool** - a boolean that indicates if this scheme should disable disable the Main Thread Checker. This defaults to false
@@ -717,6 +718,7 @@ The different actions share some properties:
 - [ ] **config**: **String** - All build actions can be set to use a certain config. If a config, or the build action itself, is not defined the first configuration found of a certain type will be used, depending on the type:
 	- `debug`: run, test, analyze
 	- `release`: profile, archive
+- [ ] **askForAppToLaunch**: **Bool** - `run` action can define a boolean that indicates if this scheme should disable disable the Ask on Launch. This defaults to false
 - [ ] **commandLineArguments**: **[String:Bool]** - `run`, `test` and `profile` actions have a map of command line arguments to whether they are enabled
 - [ ] **preActions**: **[[Execution Action](#execution-action)]** - Scripts that are run *before* the action
 - [ ] **postActions**: **[[Execution Action](#execution-action)]** - Scripts that are run *after* the action

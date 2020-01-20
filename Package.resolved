@@ -57,11 +57,11 @@
       },
       {
         "package": "XcodeProj",
-        "repositoryURL": "https://github.com/tuist/XcodeProj.git",
+        "repositoryURL": "https://github.com/YutoMizutani/XcodeProj.git",
         "state": {
-          "branch": null,
-          "revision": "0bea96dacbc7031893646be56c19e7a5e2c2881d",
-          "version": "7.4.0"
+          "branch": "add-ask-on-launch-7.5.0",
+          "revision": "77c0b4feee04a56322cef47a99e01b590c8aad05",
+          "version": null
         }
       },
       {
